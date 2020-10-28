@@ -5,9 +5,6 @@ import (
 	"fmt"
 )
 
-var KeyNotFoundErr = errors.New("No such a key in ST")
-
-var NOT_FOUND_KEY = IntKey(404)
 var DEFAULT_LEN = 1
 
 type BinarySearchST struct {

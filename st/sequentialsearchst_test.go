@@ -4,23 +4,6 @@ import (
     "testing"
 )
 
-func TestComparable(t *testing.T) {
-    t.Logf("=====>>>测试开始<<<=====")
-    key1 := IntKey(98)
-    key2 := IntKey(198)
-    key3 := IntKey(298)
-    if key2.CompareTo(key1) <= 0 {
-        t.Errorf("192 比 98 大！")
-    }
-    if key2.CompareTo(key3) >= 0 {
-        t.Errorf("192 比 298 小！")
-    }
-    if key2.CompareTo(key2) != 0 {
-        t.Errorf("自己和自己比要相等！")
-    }
-    t.Logf("=====>>>测试结束<<<=====")
-}
-
 func TestSequentialSearchST(t *testing.T) {
     t.Logf("=====>>>测试开始<<<=====")
     st := NewSequentialSearchST()
