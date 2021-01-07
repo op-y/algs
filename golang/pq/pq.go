@@ -1,7 +1,7 @@
 package pq
 
 import (
-	"errors"
+    "errors"
     "fmt"
     "math"
 )

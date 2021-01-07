@@ -1,7 +1,7 @@
 package sort
 
 import (
-	"github.com/op-y/algs/pq"
+	"github.com/op-y/algs/golang/pq"
 )
 
 func PQSort(a Sortable) {
