@@ -1,12 +1,12 @@
 package uf
 
-type QuickUF struct {
+type UF struct {
 	count int
 	id    []int
 }
 
-func NewQuickUF(n int) {
-	u := new(QuickUF)
+func NewUF(n int) *UF {
+	u := new(UF)
 	id := make([]int, n)
 	for i := 0; i < n; i++ {
 		id[i] = i
@@ -17,10 +17,7 @@ func NewQuickUF(n int) {
 }
 
 func (u *UF) find(p int) int {
-	for p != u.id[p] {
-		p = u.id[p]
-	}
-	return p
+	return u.id[p]
 }
 
 func (u *UF) Count() int {
@@ -32,12 +29,19 @@ func (u *UF) Connected(p, q int) bool {
 }
 
 func (u *UF) Union(p, q int) {
-	pRoot := u.find(p)
-	qRoot := u.find(q)
-	if pRoot == qRoot {
+	pID := u.find(p)
+	qID := u.find(q)
+
+	if pID == qID {
 		return
 	}
-	u.id[pRoot] == qRoot
+
+	for idx, value := range u.id {
+		if value == pID {
+			u.id[idx] = qID
+		}
+	}
+
 	u.count--
 	return
 }

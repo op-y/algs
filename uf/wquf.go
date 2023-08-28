@@ -6,7 +6,7 @@ type WeightedQuickUF struct {
 	weight []int
 }
 
-func NewWeightedQuickUF(n int) {
+func NewWeightedQuickUF(n int) *WeightedQuickUF {
 	u := new(WeightedQuickUF)
 	id := make([]int, n)
 	weight := make([]int, n)
@@ -20,33 +20,33 @@ func NewWeightedQuickUF(n int) {
 	return u
 }
 
-func (u *UF) find(p int) int {
+func (u *WeightedQuickUF) find(p int) int {
 	for p != u.id[p] {
 		p = u.id[p]
 	}
 	return p
 }
 
-func (u *UF) Count() int {
+func (u *WeightedQuickUF) Count() int {
 	return u.count
 }
 
-func (u *UF) Connected(p, q int) bool {
+func (u *WeightedQuickUF) Connected(p, q int) bool {
 	return u.find(p) == u.find(q)
 }
 
-func (u *UF) Union(p, q int) {
+func (u *WeightedQuickUF) Union(p, q int) {
 	pRoot := u.find(p)
 	qRoot := u.find(q)
 	if pRoot == qRoot {
 		return
 	}
-	if weight[pRoot] < weight[qRoot] {
-		u.id[pRoot] == qRoot
-		weight[qRoot] += weight[pRoot]
+	if u.weight[pRoot] < u.weight[qRoot] {
+		u.id[pRoot] = qRoot
+		u.weight[qRoot] += u.weight[pRoot]
 	} else {
-		u.id[qRoot] == pRoot
-		weight[pRoot] += weight[qRoot]
+		u.id[qRoot] = pRoot
+		u.weight[pRoot] += u.weight[qRoot]
 	}
 	u.count--
 	return
